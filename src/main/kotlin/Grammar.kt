@@ -2,7 +2,7 @@
 data class Grammar(
     val non_terminals: MutableSet<String>,
     val terminals: MutableSet<String>,
-    val productions: Map<String, MutableSet<String>>,
+    val productions: MutableSet<Production>,
     val starting_symbol: String){
 
     fun isRegular():Boolean {
@@ -10,46 +10,41 @@ data class Grammar(
         if (!this.isRightLinear())
             return false
 
-        // verify epsilon productions
+        // check if there are epsilon productions
         var hasEpsilon = false
         productions.forEach{
-            if (it.value.contains("eps")){
+            if (it.rhs.contains("eps")){
                 hasEpsilon = true
-                if (it.key != starting_symbol)
+                if (it.lhs != starting_symbol)
                     return false
             }
         }
+
+        // checks if the starting symbol appears in the rhs
         productions.forEach{
-            it.value.forEach{ s ->
+            it.rhs.forEach{ s ->
                 if(starting_symbol in s && hasEpsilon)
                     return false
             }
         }
-
         return true
     }
 
     private fun isRightLinear(): Boolean {
-        productions.values.forEach {
+        productions.forEach {
             // wrong length
-            it.forEach{s->
-                if (s.length > 2 && s!= "eps")
+            if (it.rhs.size > 2)
                 return false
-            }
-            val simple = it.filter { s -> s.length == 1 }
-            // if any production has a single non_terminal
-            if( simple.intersect(non_terminals.asIterable()).isNotEmpty())
+            // if the production has a single non_terminal
+            if(it.rhs.size == 1&&it.rhs[0] in non_terminals)
                 return false
-            val double = it.filter { s -> s.length == 2 }
-            double.forEach{ s ->
-                val first: String = s[0].toString()
-                val second: String = s[1].toString()
+            if(it.rhs.size == 2){
+                val first: String = it.rhs[0]
+                val second: String = it.rhs[1]
                 if (first in non_terminals || second in terminals)
                     return false
             }
         }
         return true
     }
-
-
 }

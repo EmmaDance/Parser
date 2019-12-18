@@ -29,8 +29,8 @@ fun start(){
             7 -> showAllTransitions(FA)
             8 -> showFinalStates(FA)
             9 -> verify(grammar)
-            10 -> buildFAFromGrammar(grammar)
-            11 -> buildGrammarFromFA(FA)
+//            10 -> buildFAFromGrammar(grammar)
+//            11 -> buildGrammarFromFA(FA)
             12 -> lr0(grammar)
         }
     }
@@ -44,80 +44,80 @@ fun lr0(grammar: Grammar) {
         println(it.action(grammar))
     }
 }
-
-fun buildGrammarFromFA(fa: FA) {
-    val non_terminals: MutableSet<String> = fa.states
-    val terminals: MutableSet<String> = fa.alphabet
-    val productions: MutableMap<String, MutableSet<String>> = HashMap()
-    val starting_symbol: String = fa.initial_state
-
-    fa.transitions.forEach{
-        val lhs = it.key.first
-        val rhs1 = it.key.second
-        val set: MutableSet<String> = HashSet()
-        if (lhs == fa.initial_state && lhs in fa.final_states)
-            set.add("eps")
-        it.value.forEach{ s ->
-            set.add(rhs1+s)
-            if (s in fa.final_states)
-                set.add(rhs1)
-        }
-        val existing = productions.putIfAbsent(lhs, set)
-        if (existing!= null){
-            existing.addAll(set)
-            productions[lhs] = existing
-        }
-    }
-    val grammar = Grammar(non_terminals, terminals, productions, starting_symbol)
-    println("The grammar corresponding to the given FA is: ")
-    showNonTerminals(grammar)
-    showTerminals(grammar)
-    showAllProductions(grammar)
-    println("The starting Symbol is $starting_symbol")
-
-}
-
-fun buildFAFromGrammar(grammar: Grammar) {
-    if (!grammar.isRegular())
-        throw Error("Cannot build FA from irregular grammar")
-    val states: MutableSet<String> = HashSet()
-    val alphabet: MutableSet<String> = HashSet()
-    val transitions: MutableMap<Pair<String, String>, MutableSet<String>> = HashMap()
-    val initial_state: String
-    val final_states: MutableSet<String> = HashSet()
-    states.addAll(grammar.non_terminals)
-    states.add("K")
-    alphabet.addAll(grammar.terminals)
-    initial_state = grammar.starting_symbol
-    final_states.add("K")
-    grammar.productions.forEach{
-        val lhs = it.key
-        val rhs = it.value
-        rhs.forEach{ s ->
-            val set: MutableSet<String> = HashSet()
-            if (lhs == grammar.starting_symbol && s == ("eps"))
-                final_states.add(grammar.starting_symbol)
-            else{
-                val key = Pair(lhs, s[0].toString())
-                var value  = "K"
-                if (s.length > 1 && s!="eps") value = s[1].toString()
-                set.add(value)
-                val oldSet = transitions.putIfAbsent(key, set)
-                if (oldSet!=null)
-                {
-                    oldSet.add(value)
-                    transitions.put(key, oldSet)
-                }
-            }
-        }
-    }
-    val fa = FA(states, alphabet, transitions, initial_state, final_states)
-    println("The FA corresponding to the given grammar is: ")
-    showStates(fa)
-    showAlphabet(fa)
-    showFinalStates(fa)
-    showAllTransitions(fa)
-}
+//
+//fun buildGrammarFromFA(fa: FA) {
+//    val non_terminals: MutableSet<String> = fa.states
+//    val terminals: MutableSet<String> = fa.alphabet
+//    val productions: MutableSet<Production> = HashSet()
+//    val starting_symbol: String = fa.initial_state
+//
+//    fa.transitions.forEach{
+//        val lhs = it.key.first
+//        val rhs1 = it.key.second
+//        val set: MutableSet<String> = HashSet()
+//        if (lhs == fa.initial_state && lhs in fa.final_states)
+//            set.add("eps")
+//        it.value.forEach{ s ->
+//            set.add(rhs1+s)
+//            if (s in fa.final_states)
+//                set.add(rhs1)
+//        }
+//        val existing = productions.putIfAbsent(lhs, set)
+//        if (existing!= null){
+//            existing.addAll(set)
+//            productions[lhs] = existing
+//        }
+//    }
+//    val grammar = Grammar(non_terminals, terminals, productions, starting_symbol)
+//    println("The grammar corresponding to the given FA is: ")
+//    showNonTerminals(grammar)
+//    showTerminals(grammar)
+//    showAllProductions(grammar)
+//    println("The starting Symbol is $starting_symbol")
+//
+//}
+//
+//fun buildFAFromGrammar(grammar: Grammar) {
+//    if (!grammar.isRegular())
+//        throw Error("Cannot build FA from irregular grammar")
+//    val states: MutableSet<String> = HashSet()
+//    val alphabet: MutableSet<String> = HashSet()
+//    val transitions: MutableMap<Pair<String, String>, MutableSet<String>> = HashMap()
+//    val initial_state: String
+//    val final_states: MutableSet<String> = HashSet()
+//    states.addAll(grammar.non_terminals)
+//    states.add("K")
+//    alphabet.addAll(grammar.terminals)
+//    initial_state = grammar.starting_symbol
+//    final_states.add("K")
+//    grammar.productions.forEach{
+//        val lhs = it.key
+//        val rhs = it.value
+//        rhs.forEach{ s ->
+//            val set: MutableSet<String> = HashSet()
+//            if (lhs == grammar.starting_symbol && s == ("eps"))
+//                final_states.add(grammar.starting_symbol)
+//            else{
+//                val key = Pair(lhs, s[0].toString())
+//                var value  = "K"
+//                if (s.length > 1 && s!="eps") value = s[1].toString()
+//                set.add(value)
+//                val oldSet = transitions.putIfAbsent(key, set)
+//                if (oldSet!=null)
+//                {
+//                    oldSet.add(value)
+//                    transitions.put(key, oldSet)
+//                }
+//            }
+//        }
+//    }
+//    val fa = FA(states, alphabet, transitions, initial_state, final_states)
+//    println("The FA corresponding to the given grammar is: ")
+//    showStates(fa)
+//    showAlphabet(fa)
+//    showFinalStates(fa)
+//    showAllTransitions(fa)
+//}
 
 fun verify(grammar: Grammar) {
     if(grammar.isRegular())
@@ -150,12 +150,11 @@ fun showStates(fa: FA) {
 
 fun showProductionsOf(symbol: String, grammar: Grammar) {
     println("Productions of $symbol")
-    grammar.productions.filter { it.key == symbol }.forEach(::println)
+    grammar.productions.filter { it.lhs == symbol }.forEach(::println)
 }
 
 fun showAllProductions(grammar: Grammar) {
     println("Productions")
-    println(grammar.productions)
     grammar.productions.forEach(::println)
 }
 
@@ -203,21 +202,28 @@ fun buildGrammar(lines: ArrayList<String>): Grammar{
     var nonTerminals: MutableSet<String> = HashSet()
     var terminals: MutableSet<String> = HashSet()
     var startingSymbol = ""
-    val productions: MutableMap<String, MutableSet<String>> = HashMap()
+    val productions: MutableSet<Production> = HashSet()
+    var number = 0
     for (i in 0 until lines.size){
-        println(lines[i])
         when(i){
             0-> nonTerminals = lines[i].split(" ").toMutableSet()
             1-> terminals = lines[i].split(" ").toMutableSet()
             2-> startingSymbol = lines[i]
             else -> {  // productions
+                number++
                 val line = lines[i] .split(" ")
-                val lhs = line[0]
-                val rhs = line[1]
-                val set: MutableSet<String> = HashSet()
-                set.add(rhs)
-                productions.putIfAbsent(lhs, set)
-                productions[lhs]?.add(rhs)
+                var lhs: String = line[0]
+                val rhs: MutableList<String> = ArrayList()
+                for (j in 0 until line.size){
+                    when(j){
+                        0-> lhs = line[j]
+                        else -> {
+                            val symbol = line[j]
+                            rhs.add(symbol)
+                        }
+                    }
+                }
+                productions.add(Production(number, lhs, rhs))
             }
         }
     }
@@ -264,7 +270,8 @@ fun printMenu (){
     println("7 - Show the set of transitions")
     println("8 - Show the set of final states")
     println("9 - Verify if the grammar is regular.")
-    println("10 - Given a regular grammar, construct the FA")
-    println("11 - Given a FA, construct a regular grammar")
+//    println("10 - Given a regular grammar, construct the FA")
+//    println("11 - Given a FA, construct a regular grammar")
+    println("12 - LR(0)")
     println("0 - Exit")
 }

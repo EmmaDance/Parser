@@ -8,18 +8,18 @@ fun closure(grammar: Grammar, state:State):State{
         modified = false
         for (item in originalItems){
             val symbol = item.getSymbolAfterDot()
-            grammar.productions.filter { it.key == symbol }.forEach{ // get productions of this symbol
-                val lhs = it.key // the left hand side of the newly created item
-                it.value.forEach{rhp->
-                    val list = ArrayList<String>()
-                    list.add(".")
-                    for (c in rhp)
-                        list.add(c.toString()) // add all the symbols to the list of the right side of the item
-                    val newItem = Item(lhs, list)
-                    if (newItem !in items){
-                        items.add(newItem)
-                        modified = true
-                    }
+            grammar.productions.filter {
+                it.lhs == symbol }.forEach{ // productions of this symbol
+                val lhs = it.lhs // the left hand side of the newly created item
+                val list = ArrayList<String>()
+                list.add(".")
+                it.rhs.forEach { rhp ->
+                    list.add(rhp) // add all the symbols to the right side of the item
+                }
+                val newItem = Item(lhs, list, it.number)
+                if (newItem !in items){
+                    items.add(newItem)
+                    modified = true
                 }
             }
         }
@@ -54,7 +54,7 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
     rhs.add(".")
     rhs.add("S")
     var items = HashSet<Item>()
-    items.add(Item("S'",rhs))
+    items.add(Item("S'",rhs,0))
     val s0 = closure(grammar,State(items))
     collection.add(s0)
     var modified = true
@@ -77,12 +77,4 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
         newCollection.clear()
     }
     return collection
-}
-
-
-fun getProdctionNumber(grammar: Grammar, item: Item){
-    val s = item.lhs
-    grammar.productions.filter { it.key == s }.forEach { p -> // productions of this symbol
-
-    }
 }

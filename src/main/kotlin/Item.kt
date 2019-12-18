@@ -1,4 +1,4 @@
-data class Item (val lhs: String, val rhs: MutableList<String>){
+data class Item (val lhs: String, val rhs: MutableList<String>, val productionNumber: Int){
     fun getSymbolAfterDot(): String{
         val dotIndex = rhs.indexOf(".")
         if(rhs.size>dotIndex+1)
@@ -12,7 +12,7 @@ data class Item (val lhs: String, val rhs: MutableList<String>){
         rhs.forEach{
             newRhs.add(it)
         }
-        return Item(lhs,newRhs)
+        return Item(lhs,newRhs, productionNumber)
     }
 
 }
