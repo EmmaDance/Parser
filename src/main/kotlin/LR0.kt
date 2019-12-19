@@ -78,3 +78,20 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
     }
     return collection
 }
+
+fun buildTable(grammar: Grammar):LR0_Table {
+    val action: HashMap<Int, String> = HashMap()
+    val goto: HashMap<Pair<Int, String>, Int> = HashMap()
+    val states: MutableSet<State> = canonicalCollection(grammar)
+    val symbols = grammar.non_terminals
+    symbols.addAll(grammar.terminals)
+    states.forEach { state ->
+        action[state.number] = state.action(grammar)
+        symbols.forEach{
+        }
+
+    }
+
+    return LR0_Table(action,goto,states)
+}
+

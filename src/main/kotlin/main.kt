@@ -5,7 +5,7 @@ fun main() {
 }
 
 fun start(){
-    val grammar = buildGrammar(readFileLineByLine("our_grammar.txt"))
+    val grammar = buildGrammar(readFileLineByLine("grammar_curs.txt"))
 //    val grammar = buildGrammar(readFileLineByLine("grammar_curs1.txt")) // reduce-reduce conflict
     val fa = buildFA(readFileLineByLine("FA.txt"))
     var ctrl = -1
@@ -38,9 +38,10 @@ fun start(){
 
 fun lr0(grammar: Grammar) {
 
-//    if(checkGrammar(grammar))
+    if(checkGrammar(grammar))
         canonicalCollection(grammar).forEach {
             println(it)
+            println(it.number)
             println(it.action(grammar))
         }
 }

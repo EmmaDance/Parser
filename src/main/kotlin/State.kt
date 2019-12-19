@@ -1,4 +1,11 @@
 data class State (val items: MutableSet<Item>){
+
+    val number:Int = crtNumber
+
+    init {
+        crtNumber++
+    }
+
     fun getSymbolsAfterDot(): MutableList<String>{
         val symbols: MutableList<String> = ArrayList()
         for (item in items) {
@@ -40,6 +47,10 @@ data class State (val items: MutableSet<Item>){
         if(!getSymbolsAfterDot().contains(""))
             return "s"
         return "e"
+    }
+
+    companion object {
+        var crtNumber: Int = 0
     }
 
 }
