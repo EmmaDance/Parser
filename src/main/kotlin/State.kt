@@ -1,9 +1,29 @@
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
+
 data class State (val items: MutableSet<Item>){
 
     val number:Int = crtNumber
 
     init {
         crtNumber++
+    }
+
+    override fun equals(other: Any?): Boolean{
+        if (this === other) return true
+        if (other?.javaClass != javaClass) return false
+
+        other as State
+
+        if (items!=other.items) return false
+
+        return true
+    }
+
+
+    override fun hashCode(): Int{
+        return items.toTypedArray().contentHashCode()
     }
 
     fun getSymbolsAfterDot(): MutableList<String>{

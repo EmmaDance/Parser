@@ -39,7 +39,6 @@ fun goto(grammar: Grammar, state: State, symbol:String):State{
                     newItem.rhs[dotIndex] = symbol
                     newItem.rhs[dotIndex+1] = "."
                     newItems.add(newItem)
-
                 }
             }
         }
@@ -56,6 +55,8 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
     var items = HashSet<Item>()
     items.add(Item("S'",rhs,0))
     val s0 = closure(grammar,State(items))
+    println("S0")
+    println(s0)
     collection.add(s0)
     var modified = true
     val symbols = grammar.non_terminals
