@@ -1,11 +1,11 @@
 import java.lang.Exception
 import java.util.*
 
-class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<String>){
+class Algorithm (private val table:LR0_Table, private val grammar: Grammar, input:Stack<String>){
 
-    val workStack:Stack<Pair<String,Int>> = Stack()
-    val inputStack: Stack<String> = input
-    val outputStack: Stack<Int> = Stack()
+    private val workStack:Stack<Pair<String,Int>> = Stack()
+    private val inputStack: Stack<String> = input
+    private val outputStack: Stack<Int> = Stack()
 
     fun start(){
         workStack.push(Pair("$",0))
@@ -21,7 +21,7 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                     val symbol = inputStack.pop()
                     val nextStateNumber = table.goto[Pair(stateNumber, symbol)] ?: -1
                     if(nextStateNumber==-1) {
-                        println("The sequence is not accepted")
+                        println("The sequence is not accepted - shift - no goto for $stateNumber and $symbol")
                         return
                     }
                     workStack.push(Pair(symbol,nextStateNumber))
@@ -29,20 +29,18 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                 }
                 "r" ->{
                     println("r")
-
                     val productionNumber = table.action[stateNumber]?.second!!
-                    println("production number: " + productionNumber)
+//                    println("production number: " + productionNumber)
                     val production = grammar.getProduction(productionNumber)
-                    println("production : " + production)
+//                    println("production : " + production)
                     for ( i in production.rhs.size-1 downTo 0){
-                        println(i)
                         workStack.pop()
                     }
                     outputStack.push(productionNumber)
                     val lastStateNumber = workStack.peek().second
                     val nextStateNumber = table.goto[Pair(lastStateNumber,production.lhs)] ?: -1
                     if(nextStateNumber==-1) {
-                        println("The sequence is not accepted")
+                        println("The sequence is not accepted - reduce - no goto for $lastStateNumber and ${production.lhs}")
                         return
                     }
                     workStack.push(Pair(production.lhs,nextStateNumber))
@@ -57,6 +55,7 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                 }
                 else ->{
                     println ("WHAT IS GOING ON?")
+                    println(table.action[stateNumber]?.first)
                     return
                 }
             }

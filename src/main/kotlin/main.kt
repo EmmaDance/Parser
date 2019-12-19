@@ -9,8 +9,8 @@ fun main() {
 }
 
 fun start(){
-    val grammar = buildGrammar(readFileLineByLine("grammar_curs.txt"))
-//    val grammar = buildGrammar(readFileLineByLine("grammar_curs1.txt")) // reduce-reduce conflict
+    val grammar = buildGrammar(readFileLineByLine("our_grammar.txt"))
+//    val grammar = buildGrammar(readFileLineByLine("grammar_curs.txt"))
     val fa = buildFA(readFileLineByLine("FA.txt"))
     var ctrl = -1
     lr0(grammar)
@@ -46,14 +46,16 @@ fun lr0(grammar: Grammar) {
 //        canonicalCollection(grammar).forEach {
 //            println(it)
 //        }
-    println("")
+//    println("")
     val table = buildTable(grammar)
     val input = Stack<String>()
     input.push("c")
     input.push("b")
     input.push("b")
     input.push("a")
-    val algorithm = Algorithm(table, grammar, readInput("input.txt"))
+//    val algorithm = Algorithm(table, grammar, input)
+//    val algorithm = Algorithm(table, grammar, readInput("seq.txt"))
+    val algorithm = Algorithm(table, grammar, readInput("input1.txt"))
     algorithm.start()
 }
 

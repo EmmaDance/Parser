@@ -4,11 +4,7 @@ import kotlin.collections.HashSet
 
 data class State (val items: MutableSet<Item>){
 
-    var number:Int = crtNumber
-
-    init {
-        crtNumber++
-    }
+    var number:Int = 0
 
     override fun equals(other: Any?): Boolean{
         if (this === other) return true
@@ -51,12 +47,14 @@ data class State (val items: MutableSet<Item>){
             if(items.size>1){
                 getSymbolsAfterDot().forEach {
                     if (it.isNotEmpty())
-                        throw Exception("Shift-reduce conflict in state "+ this.toString())
+                        println("Shift-reduce conflict in state "+ this.toString())
+//                        throw Exception("Shift-reduce conflict in state "+ this.toString())
                 }
                 // check for reduce-reduce conflicts
                 items.forEach {
                     if (it.productionNumber != productionNumber)
-                        throw Exception("Reduce-reduce conflict  in state " + this.toString())
+                        println("Reduce-reduce conflict  in state " + this.toString())
+//                        throw Exception("Reduce-reduce conflict  in state " + this.toString())
                 }
             }
             if (items.distinct()[0].lhs=="S'")
@@ -70,11 +68,8 @@ data class State (val items: MutableSet<Item>){
     }
 
     override fun toString(): String {
-        return number.toString() + " " + super.toString()
+        return "State $number {$items}"
     }
 
-    companion object {
-        var crtNumber: Int = -1
-    }
 
 }

@@ -1,15 +1,18 @@
 import java.io.File
 import java.util.*
+import kotlin.collections.HashSet
 
 fun closure(grammar: Grammar, state:State):State{
+//    println(state)
     if (state.isEmpty()) return state
-    val items = state.items
-    val originalItems = state.items
+    var items = state.copy().items
+    var originalItems = state.copy().items
     var modified = true
     while(modified){
         modified = false
         for (item in originalItems){
             val symbol = item.getSymbolAfterDot()
+//            println(symbol)
             grammar.productions.filter {
                 it.lhs == symbol }.forEach{ // productions of this symbol
                 val lhs = it.lhs // the left hand side of the newly created item
@@ -25,9 +28,18 @@ fun closure(grammar: Grammar, state:State):State{
                 }
             }
         }
+        originalItems = items.deepcopy()
     }
-//    println("closure($state)=$items")
     return State(items)
+}
+
+private fun MutableSet<Item>.deepcopy(): MutableSet<Item> {
+    val items = HashSet<Item>()
+    this.forEach {
+        val newItem: Item = it.copy()
+        items.add(newItem)
+    }
+    return items
 }
 
 fun goto(grammar: Grammar, state: State, symbol:String):State{
@@ -90,7 +102,7 @@ fun buildTable(grammar: Grammar):LR0_Table {
     val symbols = grammar.non_terminals
     symbols.addAll(grammar.terminals)
     states.forEach { state ->
-        println(state)
+//        println(state)
         action[state.number] = state.action(grammar)
         //println("action "+ state.action(grammar).toString())
         symbols.forEach{symbol->
@@ -115,9 +127,13 @@ fun getStateNumberFromCC(collection: MutableSet<State>, state: State) : Int{
 }
 
 fun readInput(fileName: String): Stack<String> {
-    var stack: Stack<String> = Stack()
+    val stack: Stack<String> = Stack()
     File(fileName).forEachLine {
         stack.push(it.trim())
     }
-    return stack
+    val result: Stack<String> = Stack()
+    while(stack.isNotEmpty()){
+        result.push(stack.pop())
+    }
+    return result
 }
