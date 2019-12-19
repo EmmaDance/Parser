@@ -24,7 +24,7 @@ data class State (val items: MutableSet<Item>){
         return State(newItems)
     }
 
-    fun action(grammar: Grammar):String{
+    fun action(grammar: Grammar):Pair<String,Int>{
         println(getSymbolsAfterDot())
         if(getSymbolsAfterDot().contains("")) { // . is last => reduce or accept action
             val productionNumber = items.distinct()[0].productionNumber
@@ -40,13 +40,13 @@ data class State (val items: MutableSet<Item>){
                 }
             }
             if (items.distinct()[0].lhs=="S'")
-                return "a"
-            return "r$productionNumber" // + production number
+                return Pair("a",-1)
+            return Pair("r",productionNumber) // + production number
         }
         // check for shift
         if(!getSymbolsAfterDot().contains(""))
-            return "s"
-        return "e"
+            return Pair("s",-1)
+        return Pair("e",-1)
     }
 
     companion object {

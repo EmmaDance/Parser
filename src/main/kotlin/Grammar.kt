@@ -5,6 +5,12 @@ data class Grammar(
     val productions: MutableSet<Production>,
     val starting_symbol: String){
 
+    fun getProduction(number:Int):Production{
+        return productions.filter {
+            it.number == number
+        }[0]
+    }
+
     fun isRegular():Boolean {
 
         if (!this.isRightLinear())
