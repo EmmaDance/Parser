@@ -1,4 +1,8 @@
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 fun main() {
     start()
@@ -38,20 +42,19 @@ fun start(){
 
 fun lr0(grammar: Grammar) {
 
-    if(checkGrammar(grammar))
         canonicalCollection(grammar).forEach {
             println(it)
             println(it.number)
             println(it.action(grammar))
         }
-}
-
-fun checkGrammar(grammar: Grammar): Boolean {
-    canonicalCollection(grammar).forEach {
-        if(it.action(grammar)=="e")
-            return false
-    }
-    return true
+    val table = buildTable(grammar)
+    val input = Stack<String>()
+    input.push("c")
+    input.push("b")
+    input.push("b")
+    input.push("a")
+    val algorithm = Algorithm(table, grammar, input )
+    algorithm.start()
 }
 
 fun verify(grammar: Grammar) {

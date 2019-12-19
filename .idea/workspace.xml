@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba72940a-d9e4-476a-829e-fdf051d50de2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Algorithm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Grammar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Grammar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Algorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Algorithm.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LR0.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LR0.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/State.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/State.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -25,12 +22,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="357">
+              <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
               <folding>
+                <element signature="e#0#142#0" expanded="true" />
                 <element signature="n#!!block;n#verify#0" />
                 <element signature="n#!!block;n#showFinalStates#0" />
                 <element signature="n#!!block;n#showAllTransitions#0" />
@@ -58,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+            <state relative-caret-position="1598">
+              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
             </state>
           </provider>
         </entry>
@@ -73,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Algorithm.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -89,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="62" selection-start-column="62" selection-end-column="62" />
+              <caret column="95" selection-start-column="95" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -140,13 +138,13 @@
         <option value="$PROJECT_DIR$/our_grammar" />
         <option value="$PROJECT_DIR$/our_grammar.txt" />
         <option value="$PROJECT_DIR$/src/main/java/State.java" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/main.kt" />
         <option value="$PROJECT_DIR$/seq.txt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/LR0.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/State.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/Grammar.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/Algorithm.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/LR0.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/main.kt" />
       </list>
     </option>
   </component>
@@ -254,7 +252,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576759330400" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576760080252" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -319,12 +317,12 @@
       <workItem from="1573636182596" duration="671000" />
       <workItem from="1573637263733" duration="613000" />
       <workItem from="1573655147760" duration="46000" />
-      <workItem from="1576671262155" duration="22463000" />
+      <workItem from="1576671262155" duration="23197000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47431000" />
+    <option name="totallyTimeSpent" value="48165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -460,46 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/main.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!block;n#verify#0" />
-            <element signature="n#!!block;n#showFinalStates#0" />
-            <element signature="n#!!block;n#showAllTransitions#0" />
-            <element signature="n#!!block;n#showAlphabet#0" />
-            <element signature="n#!!block;n#showStates#0" />
-            <element signature="n#!!block;n#showTerminals#0" />
-            <element signature="n#!!block;n#showNonTerminals#0" />
-            <element signature="n#!!block;n#readFromKeyboard#0" />
-            <element signature="n#!!block;n#readFileLineByLine#0" />
-            <element signature="n#!!block;n#buildFA#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="62" selection-start-column="62" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/seq.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/State.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -517,12 +475,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0_Table.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="95" selection-start-column="95" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/LR0.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Algorithm.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seq.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/main.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#142#0" expanded="true" />
+            <element signature="n#!!block;n#verify#0" />
+            <element signature="n#!!block;n#showFinalStates#0" />
+            <element signature="n#!!block;n#showAllTransitions#0" />
+            <element signature="n#!!block;n#showAlphabet#0" />
+            <element signature="n#!!block;n#showStates#0" />
+            <element signature="n#!!block;n#showTerminals#0" />
+            <element signature="n#!!block;n#showNonTerminals#0" />
+            <element signature="n#!!block;n#readFromKeyboard#0" />
+            <element signature="n#!!block;n#readFileLineByLine#0" />
+            <element signature="n#!!block;n#buildFA#0" />
           </folding>
         </state>
       </provider>

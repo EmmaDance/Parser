@@ -26,8 +26,18 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                 "r" ->{
                     val productionNumber = table.action[stateNumber]?.second!!
                     val production = grammar.getProduction(productionNumber)
-                    
-
+                    for ( i in production.rhs.size-1 until 0){
+                        println(i)
+                        workStack.pop()
+                    }
+                    outputStack.push(productionNumber)
+                    val lastStateNumber = workStack.peek().second
+                    val nextStateNumber = table.goto[Pair(lastStateNumber,production.lhs)] ?: -1
+                    if(nextStateNumber==-1) {
+                        println("The sequence is not accepted")
+                        return
+                    }
+                    workStack.push(Pair(production.lhs,nextStateNumber))
 
                 }
                 "acc"->{
