@@ -12,8 +12,12 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
         while(true){
             val pair = workStack.peek()
             val stateNumber = pair.second
+            println(workStack)
+            println(inputStack)
+            println(outputStack)
             when (table.action[stateNumber]?.first){
                 "s" -> {
+                    println("s")
                     val symbol = inputStack.pop()
                     val nextStateNumber = table.goto[Pair(stateNumber, symbol)] ?: -1
                     if(nextStateNumber==-1) {
@@ -24,6 +28,8 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
 
                 }
                 "r" ->{
+                    println("r")
+
                     val productionNumber = table.action[stateNumber]?.second!!
                     val production = grammar.getProduction(productionNumber)
                     for ( i in production.rhs.size-1 until 0){
@@ -46,6 +52,10 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                 }
                 "e"->{
                     throw Exception("ERROR!")
+                }
+                else ->{
+                    println ("WHAT IS GOING ON?")
+                    return
                 }
             }
 

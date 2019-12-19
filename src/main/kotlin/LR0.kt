@@ -87,8 +87,10 @@ fun buildTable(grammar: Grammar):LR0_Table {
     symbols.addAll(grammar.terminals)
     states.forEach { state ->
         action[state.number] = state.action(grammar)
+        println("action "+ state.action(grammar).toString())
         symbols.forEach{symbol->
             goto[Pair(state.number,symbol)]=goto(grammar,state,symbol).number
+            println("goto " + goto(grammar,state,symbol).number.toString())
         }
 
     }
