@@ -52,7 +52,7 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
     val collection = HashSet<State>()
     val rhs: MutableList<String> = ArrayList()
     rhs.add(".")
-    rhs.add("S")
+    rhs.add(grammar.starting_symbol)
     var items = HashSet<Item>()
     items.add(Item("S'",rhs,0))
     val s0 = closure(grammar,State(items))
