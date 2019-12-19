@@ -1,7 +1,9 @@
+import java.io.File
+import java.util.*
 
 fun closure(grammar: Grammar, state:State):State{
     if (state.isEmpty()) return state
-    val items = state.copy().items
+    val items = state.items
     val originalItems = state.items
     var modified = true
     while(modified){
@@ -55,13 +57,12 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
     var items = HashSet<Item>()
     items.add(Item("S'",rhs,0))
     val s0 = closure(grammar,State(items))
-    println("S0")
-    println(s0)
     collection.add(s0)
     var modified = true
     val symbols = grammar.non_terminals
     symbols.addAll(grammar.terminals)
     val newCollection = HashSet<State>()
+    var count = 0
     while(modified){
         modified = false
         for (state in collection) {
@@ -69,6 +70,8 @@ fun canonicalCollection(grammar: Grammar): MutableSet<State>{
                 val goto = goto(grammar,state,symbol)
                 if (!goto.isEmpty() &&
                     goto !in collection){
+                    count ++
+                    goto.number = count
                     newCollection.add(goto)
                     modified = true
                 }
@@ -87,11 +90,12 @@ fun buildTable(grammar: Grammar):LR0_Table {
     val symbols = grammar.non_terminals
     symbols.addAll(grammar.terminals)
     states.forEach { state ->
+        println(state)
         action[state.number] = state.action(grammar)
-        println("action "+ state.action(grammar).toString())
+        //println("action "+ state.action(grammar).toString())
         symbols.forEach{symbol->
-            goto[Pair(state.number,symbol)]=goto(grammar,state,symbol).number
-            println("goto " + goto(grammar,state,symbol).number.toString())
+            goto[Pair(state.number,symbol)]=getStateNumberFromCC(states, goto(grammar, state, symbol))
+            //println("goto " + goto(grammar,state,symbol).number.toString())
         }
 
     }
@@ -99,3 +103,21 @@ fun buildTable(grammar: Grammar):LR0_Table {
     return LR0_Table(action,goto,states)
 }
 
+fun getStateNumberFromCC(collection: MutableSet<State>, state: State) : Int{
+    val states: List<State> = collection.filter{
+        it == state
+    }
+    //println("STATES: " + states)
+    if (states.size > 0) {
+        return states[0].number
+    }
+    return -1
+}
+
+fun readInput(fileName: String): Stack<String> {
+    var stack: Stack<String> = Stack()
+    File(fileName).forEachLine {
+        stack.push(it.trim())
+    }
+    return stack
+}

@@ -4,7 +4,7 @@ import kotlin.collections.HashSet
 
 data class State (val items: MutableSet<Item>){
 
-    val number:Int = crtNumber
+    var number:Int = crtNumber
 
     init {
         crtNumber++
@@ -16,7 +16,7 @@ data class State (val items: MutableSet<Item>){
 
         other as State
 
-        if (items!=other.items) return false
+        if (!items.equals(other.items)) return false
 
         return true
     }
@@ -45,7 +45,7 @@ data class State (val items: MutableSet<Item>){
     }
 
     fun action(grammar: Grammar):Pair<String,Int>{
-        println(getSymbolsAfterDot())
+//        println(getSymbolsAfterDot())
         if(getSymbolsAfterDot().contains("")) { // . is last => reduce or accept action
             val productionNumber = items.distinct()[0].productionNumber
             if(items.size>1){
@@ -69,8 +69,12 @@ data class State (val items: MutableSet<Item>){
         return Pair("e",-1)
     }
 
+    override fun toString(): String {
+        return number.toString() + " " + super.toString()
+    }
+
     companion object {
-        var crtNumber: Int = 0
+        var crtNumber: Int = -1
     }
 
 }

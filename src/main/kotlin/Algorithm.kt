@@ -31,8 +31,10 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                     println("r")
 
                     val productionNumber = table.action[stateNumber]?.second!!
+                    println("production number: " + productionNumber)
                     val production = grammar.getProduction(productionNumber)
-                    for ( i in production.rhs.size-1 until 0){
+                    println("production : " + production)
+                    for ( i in production.rhs.size-1 downTo 0){
                         println(i)
                         workStack.pop()
                     }
@@ -46,7 +48,7 @@ class Algorithm (val table:LR0_Table, val grammar: Grammar, val input:Stack<Stri
                     workStack.push(Pair(production.lhs,nextStateNumber))
 
                 }
-                "acc"->{
+                "a"->{
                     println("Sequence accepted")
                     return
                 }

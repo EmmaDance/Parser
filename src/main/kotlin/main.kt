@@ -13,6 +13,7 @@ fun start(){
 //    val grammar = buildGrammar(readFileLineByLine("grammar_curs1.txt")) // reduce-reduce conflict
     val fa = buildFA(readFileLineByLine("FA.txt"))
     var ctrl = -1
+    lr0(grammar)
     while (ctrl != 0){
         printMenu()
         ctrl = readLine()?.toInt() ?: continue
@@ -42,18 +43,17 @@ fun start(){
 
 fun lr0(grammar: Grammar) {
 
-        canonicalCollection(grammar).forEach {
-            println(it)
-            println(it.number)
-            println(it.action(grammar))
-        }
+//        canonicalCollection(grammar).forEach {
+//            println(it)
+//        }
+    println("")
     val table = buildTable(grammar)
     val input = Stack<String>()
     input.push("c")
     input.push("b")
     input.push("b")
     input.push("a")
-    val algorithm = Algorithm(table, grammar, input )
+    val algorithm = Algorithm(table, grammar, readInput("input.txt"))
     algorithm.start()
 }
 
