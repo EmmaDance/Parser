@@ -1,4 +1,4 @@
-program declaration constant type decl arraydecl cmpdstmt stmtist simplestmt stmt iostmt ifstmt assignstmt expression term factor index arithop1 arithop2 whilestmt condition
+program declaration constant type decl arraydecl cmpdstmt stmtlist simplestmt stmt iostmt ifstmt assignstmt expression factor index arithop whilestmt condition relation
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
 program
 program type 0 19 20 cmpdstmt
@@ -22,22 +22,18 @@ iostmt 4 28 0
 iostmt 5 29 0
 iostmt 5 29 6
 ifstmt 8 19 condition 20 stmt
-assignstmt 0 26 expression
-expression expression arithop2 term
-expression term
-term factor
-term term arithop1 factor
+assignstmt 0 26 1
+expression factor arithop factor
 factor 0
 factor 1
-factor 19 expression 20
 index number
 index 0
-arithop1 14
-arithop1 16
-arithop2 13
-arithop2 15
+arithop 13
+arithop 14
+arithop 15
+arithop 16
 whilestmt 7 19 condition 20 stmt
-condition expression relation expression
+condition factor relation factor
 relation 23
 relation 24
 relation 25

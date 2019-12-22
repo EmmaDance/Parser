@@ -43,11 +43,15 @@ fun start(){
 
 fun lr0(grammar: Grammar) {
 
-//        canonicalCollection(grammar).forEach {
-//            println(it)
-//        }
-//    println("")
+        canonicalCollection(grammar).forEach {
+            println(it)
+        }
+    println("")
     val table = buildTable(grammar)
+    println("GOTO")
+    println(table.goto.filter {
+        it.key.first == 9
+    })
     val input = Stack<String>()
     input.push("c")
     input.push("b")
@@ -55,7 +59,7 @@ fun lr0(grammar: Grammar) {
     input.push("a")
 //    val algorithm = Algorithm(table, grammar, input)
 //    val algorithm = Algorithm(table, grammar, readInput("seq.txt"))
-    val algorithm = Algorithm(table, grammar, readInput("input1.txt"))
+    val algorithm = Algorithm(table, grammar, readInput("input.txt"))
     algorithm.start()
 }
 
