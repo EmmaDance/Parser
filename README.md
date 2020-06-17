@@ -1,13 +1,14 @@
-# RegularGrammars_FiniteAutomata
-Formal Languages and Compiler Design - laboratory work 2 
+Lab Assignment no. 4-  Parsing
 
-Regular grammars and finite automata
+    STEP 1: perform the parsing of an input sequence
 
-Write a program that:
-1. Reads a grammar (from keyboard and from file)
-2. Displays the elements of a grammar, using a menu: set of non-terminals, set of terminals,  set of productions, the productions of a given non-terminal symbol
-3. Verifies if the grammar is regular
-4. Reads the elements of a FA (from keyboard and from file)
-5. Displays the elements of a finite automata, using a menu: the set of states, the alphabet, all the transitions, the set of final state.
-6. Given a regular grammar constructs the corresponding finite automaton.
-7. Given a finite automaton constructs the corresponding regular grammar.
+     Input: - a context free grammar (the example from course)
+            - an input sequence
+     Output: the parsing tree corresponding to the input sequence or a message in case the sequence is not accepted.
+
+Remark: Verify if the parsing method can be applied
+
+    STEP 2: performs the parsing for a program written in your language (lab. 1)
+
+      Input: PIF + minilanguage grammar
+      Output: parsing tree corresponding to the program or a message for errors (error diagnose where it is the case)
